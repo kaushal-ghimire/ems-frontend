@@ -1,0 +1,26 @@
+<div class="container mt-3">
+    <h3>Events <a routerLink="/events/new" class="btn btn-sm btn-primary float-end">New</a></h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Capacity</th>
+                <th>Location</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let e of events">
+                <td>{{ e.title }}</td>
+                <td>{{ e.eventDate | date:'medium' }}</td>
+                <td>{{ e.capacity }}</td>
+                <td>{{ e.location }}</td>
+                <td>
+                    <a [routerLink]="['/events', e.id]" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    <button (click)="delete(e.id)" class="btn btn-sm btn-danger">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

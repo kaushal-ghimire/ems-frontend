@@ -1,0 +1,54 @@
+$app-bg-color: #f4f6f8;
+$primary-color: #4f46e5;
+$header-footer-bg: #1f2937;
+$text-color: #111827;
+$footer-text-color: #d1d5db;
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: $app-bg-color;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.app-header {
+    background-color: $header-footer-bg;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+        margin: 0;
+        font-size: 1.8rem;
+    }
+
+    .app-nav a {
+        color: white;
+        margin-left: 1.5rem;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+
+        &.active,
+        &:hover {
+            color: $primary-color;
+        }
+    }
+}
+
+.app-main {
+    flex: 1;
+    padding: 2rem;
+    background-color: $app-bg-color;
+}
+
+.app-footer {
+    background-color: $header-footer-bg;
+    color: $footer-text-color;
+    text-align: center;
+    padding: 1rem 2rem;
+    font-size: 0.9rem;
+}
