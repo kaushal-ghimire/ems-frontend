@@ -12,6 +12,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EventListComponent {
   events: any[] = [];
+  pagedEvents: any[] = [];
+
+  currentPage: number = 1;
+  pageSize: number = 5; // Number of events per page
+  totalPages: number = 0;
 
   constructor(private http: HttpClient) {
     this.loadEvents();
@@ -25,7 +30,29 @@ export class EventListComponent {
 
   loadEvents() {
     this.http.get<any[]>('http://localhost:8080/api/events')
-      .subscribe(data => this.events = data);
+      .subscribe(data => {
+        this.events = data;
+        this.totalPages = Math.ceil(this.events.length / this.pageSize);
+        this.setPage(1);
+      });
+  }
+
+  setPage(page: number) {
+    if (page < 1) page = 1;
+    if (page > this.totalPages) page = this.totalPages;
+    this.currentPage = page;
+
+    const startIndex = (page - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.pagedEvents = this.events.slice(startIndex, endIndex);
+  }
+
+  nextPage() {
+    this.setPage(this.currentPage + 1);
+  }
+
+  prevPage() {
+    this.setPage(this.currentPage - 1);
   }
 
   delete(id: number) {

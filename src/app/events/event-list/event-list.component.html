@@ -1,5 +1,5 @@
 <div class="container mt-3">
-    <h3>Events <a routerLink="/events/new" class="btn btn-sm btn-primary float-end">New</a></h3>
+    <h3>Events <button routerLink="/events/new" class="btn btn-sm btn-primary float-end">New</button></h3>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -12,7 +12,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let e of events; let i = index">
+            <tr *ngFor="let e of pagedEvents; let i = index">
                 <td>{{ i + 1 }}</td>
                 <td>{{ e.title }}</td>
                 <td>{{ e.eventDate | date:'medium' }}</td>
@@ -25,4 +25,11 @@
             </tr>
         </tbody>
     </table>
+
+    <!-- Pagination Controls -->
+    <div class="pagination-controls">
+        <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
 </div>
