@@ -17,6 +17,12 @@ export class EventListComponent {
     this.loadEvents();
   }
 
+  // ngOnInit() {
+  //   this.http.get<any[]>('http://localhost:8080/api/events')
+  //     .subscribe(data => this.events = data);
+  // }
+
+
   loadEvents() {
     this.http.get<any[]>('http://localhost:8080/api/events')
       .subscribe(data => this.events = data);
