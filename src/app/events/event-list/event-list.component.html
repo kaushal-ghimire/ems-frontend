@@ -3,6 +3,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
+                <th>SN</th>
                 <th>Title</th>
                 <th>Date</th>
                 <th>Capacity</th>
@@ -11,13 +12,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let e of events">
+            <tr *ngFor="let e of events; let i = index">
+                <td>{{ i + 1 }}</td>
                 <td>{{ e.title }}</td>
                 <td>{{ e.eventDate | date:'medium' }}</td>
                 <td>{{ e.capacity }}</td>
                 <td>{{ e.location }}</td>
                 <td>
-                    <a [routerLink]="['/events', e.id]" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    <a [routerLink]="['/events', e.id, 'edit']" class="btn btn-sm btn-outline-secondary">Edit</a>
                     <button (click)="delete(e.id)" class="btn btn-sm btn-danger">Delete</button>
                 </td>
             </tr>
